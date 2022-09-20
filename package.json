@@ -1,0 +1,16 @@
+{
+  "name": "influxcloud_query",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "verify": "node -e \"(async () => console.log(await require('./index').handler({ time: '-10h' })))();\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.29.0",
+    "dotenv": "^16.0.2"
+  }
+}
