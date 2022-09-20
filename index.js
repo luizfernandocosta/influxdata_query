@@ -22,7 +22,9 @@ const handleData = async (event) => {
   {
     const data = queryClient.collectRows(fluxQuery);
 
-    (await data).forEach((x) => collectedData.push(JSON.stringify(x)))
+    (await data).forEach((x) => {
+        collectedData.push(x)
+    })
   }
   catch (e)
   {
