@@ -40,34 +40,34 @@ spec:
             allowedHosts:
               - github.com
 
-  # here's the steps that are executed in series in the scaffolder backend
-  steps:
-    - id: fetch-base
-      name: Fetch Base
-      action: fetch:template
-      input:
-        url: ./template
-        values:
-          name: ${{ parameters.name }}
-
-    - id: fetch-docs
-      name: Fetch Docs
-      action: fetch:plain
-      input:
-        targetPath: ./community
-        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
-
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
-
-    - id: register
-      name: Register
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
+      # here's the steps that are executed in series in the scaffolder backend
+      steps:
+        - id: fetch-base
+          name: Fetch Base
+          action: fetch:template
+          input:
+            url: ./template
+            values:
+              name: ${{ parameters.name }}
+    
+        - id: fetch-docs
+          name: Fetch Docs
+          action: fetch:plain
+          input:
+            targetPath: ./community
+            url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+    
+        - id: publish
+          name: Publish
+          action: publish:github
+          input:
+            allowedHosts: ['github.com']
+            description: This is ${{ parameters.name }}
+            repoUrl: ${{ parameters.repoUrl }}
+    
+        - id: register
+          name: Register
+          action: catalog:register
+          input:
+            repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+            catalogInfoPath: '/catalog-info.yaml'
